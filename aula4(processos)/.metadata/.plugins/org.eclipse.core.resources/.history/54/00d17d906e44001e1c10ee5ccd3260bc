@@ -1,9 +1,0 @@
-package controller;
-
-public class RedesController {
-
-	public RedesController() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

@@ -13,15 +13,17 @@ public class Main {
 			opt = Integer.parseInt(JOptionPane.showInputDialog("Escolha o processo a ser realizado: \n2- chamar o ip \n3- faz a chamada de ping \n9-Finalizar aplicação"));
 			switch(opt) {
 			case 2:
-				redes.ip();
+				String processo2 = "ipconfig";
+				redes.ip(processo2);
 				break;
 			case 3:
-				
+				String processo3 = "ping -4 -n 10 www.google.com.br";
+				redes.ping(processo3);
 				break;
 			case 9:
 				System.exit(0);
 				break;
-		};
+		}
 	}
 	}
 }

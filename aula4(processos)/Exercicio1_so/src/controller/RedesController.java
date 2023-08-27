@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 
 public class RedesController {
 
+
 	public RedesController() {
 		super();
 	}
@@ -16,20 +17,25 @@ public class RedesController {
 		return os;
 	}
 
-	public void ip() {
-		String process = "ipconfig";
+	public void ip(String processo) {
 		String nome = os();
 		if (nome.contains("Windows")) {
 			try {
-				Process p = Runtime.getRuntime().exec(process);
+				Process p = Runtime.getRuntime().exec(processo);
 				InputStream fluxo = p.getInputStream();
 				InputStreamReader leitor = new InputStreamReader(fluxo);
 				BufferedReader buffer1 = new BufferedReader(leitor);
+				
+				
 				String lerLinha = buffer1.readLine();
 				System.out.println("Endereços com IPv4:\n");
+				String Adap = "";
 				while (lerLinha != null) {
-					if (lerLinha.contains("IPv4")) {
-						System.out.println(lerLinha);
+					if (lerLinha.contains("Adaptador")) {
+						Adap = lerLinha;
+					}else if(lerLinha.contains("IPv4")) {
+						String[] valorIP = lerLinha.split(":");
+						System.out.println(Adap + " " + valorIP[1]);
 					}
 					lerLinha = buffer1.readLine();
 				}
@@ -41,16 +47,22 @@ public class RedesController {
 			}
 		} else {
 			try {
-				process = "ifconfig";
-				Process p = Runtime.getRuntime().exec(process);
+				processo = "ifconfig";
+				Process p = Runtime.getRuntime().exec(processo);
 				InputStream fluxo = p.getInputStream();
 				InputStreamReader leitor = new InputStreamReader(fluxo);
 				BufferedReader buffer1 = new BufferedReader(leitor);
+				
+				
 				String lerLinha = buffer1.readLine();
 				System.out.println("Endereços com IPv4:\n");
+				String Adap = "";
 				while (lerLinha != null) {
-					if (lerLinha.contains("IPv4")) {
-						System.out.println(lerLinha);
+					if (lerLinha.contains("Adaptador")) {
+						Adap = lerLinha;
+					}else if(lerLinha.contains("IPv4")) {
+						String[] valorIP = lerLinha.split(":");
+						System.out.println(Adap + " " + valorIP[1]);
 					}
 					lerLinha = buffer1.readLine();
 				}
@@ -63,5 +75,50 @@ public class RedesController {
 		}
 
 	}
-
+	
+	public void ping(String processo) {
+		String nome = os();
+		if(nome.contains("Windows")) {
+			try {
+				Process p = Runtime.getRuntime().exec(processo);
+				InputStream fluxo = p.getInputStream();
+				InputStreamReader leitor = new InputStreamReader(fluxo);
+				BufferedReader buffer = new BufferedReader(leitor);
+				
+				
+				String lerLinha = buffer.readLine();
+				while(lerLinha != null) {
+					if(lerLinha.contains("milissegundos")) {
+						lerLinha = buffer.readLine();
+						String[] valorPing = lerLinha.split("=");
+						System.out.println("\nTempo Médio ="+ valorPing[3]);
+					}
+					lerLinha = buffer.readLine();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				processo = "ping -4 -c 10 www.google.com.br";
+				Process p = Runtime.getRuntime().exec(processo);
+				InputStream fluxo = p.getInputStream();
+				InputStreamReader leitor = new InputStreamReader(fluxo);
+				BufferedReader buffer = new BufferedReader(leitor);
+				
+				
+				String lerLinha = buffer.readLine();
+				while(lerLinha != null) {
+					if(lerLinha.contains("milissegundos")) {
+						lerLinha = buffer.readLine();
+						String[] valorPing = lerLinha.split("=");
+						System.out.println("\nTempo Médio ="+ valorPing[3]);
+					}
+					lerLinha = buffer.readLine();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
