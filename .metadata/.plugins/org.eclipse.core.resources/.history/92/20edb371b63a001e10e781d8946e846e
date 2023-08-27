@@ -1,0 +1,22 @@
+package controller;
+
+public class OperacoesController {
+
+	public OperacoesController() {
+		super();
+	}
+	
+	public void contaVetor() {
+		int vet[] = new int[100];
+		double TempoInicial = System.nanoTime();
+		for(int i=0; i<1000; i++) {
+			vet[i] = 0;
+		}
+		double TempoFinal = System.nanoTime();
+		double tempoTotal = TempoFinal - TempoInicial;
+		tempoTotal = tempoTotal / Math.pow(10,9);
+		
+		System.out.println("Tempo total para 1000 posições" + tempoTotal);
+	}
+
+}

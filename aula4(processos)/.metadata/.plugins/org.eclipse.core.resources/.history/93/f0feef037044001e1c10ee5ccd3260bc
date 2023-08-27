@@ -1,0 +1,17 @@
+package view;
+
+import javax.swing.JOptionPane;
+
+import controller.RedesController;
+
+public class Main {
+
+	public static void main(String[] args) {
+		RedesController redes =new  RedesController();
+		int opt;
+		do {
+			opt = Integer.parseInt(JOptionPane.showInputDialog("Escolha o processo a ser realizado: \nSO- identificar o S.O \nIP- chamar o ip \nPing- faz a chamada de ping"))
+		}While(opt!=9);
+	}
+
+}

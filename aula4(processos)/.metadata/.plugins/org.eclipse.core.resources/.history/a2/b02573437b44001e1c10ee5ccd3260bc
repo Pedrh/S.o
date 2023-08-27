@@ -1,0 +1,58 @@
+package controller;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+public class RedesController {
+
+	public RedesController() {
+		super();
+	}
+	
+	private String os() {
+		String os = System.getProperty("os.name");
+		return os;
+	}
+	
+	public void ip(String processo) {
+		String nome = os();
+		if(nome.contains("Windows")) {
+//			StringBuffer buffer = new StringBuffer();
+//			buffer.append("cmd /c");
+//			buffer.append(" ");
+//			buffer.append("ipconfig");
+			try {
+//				Process p = Runtime.getRuntime().exec(processo);
+//				InputStream fluxo = p.getInputStream();
+//				InputStreamReader leitor = new InputStreamReader(fluxo);
+//				BufferedReader buffer1 = new BufferedReader(leitor);
+//				String lerLinha = buffer1.readLine();
+//				while(lerLinha != null) {
+//					if(lerLinha.contains("IPv4")) {
+//						System.out.println(lerLinha);
+//					}
+//					lerLinha = buffer1.readLine();
+//				}
+//				buffer.close();
+//				buffer1.close();
+//				leitor.close();
+//				fluxo.close();
+//				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void readProcess(String process) {
+		try {
+			Runtime.getRuntime().exec(process);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+}

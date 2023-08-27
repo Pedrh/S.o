@@ -1,0 +1,20 @@
+package controller;
+
+public class OperacoesController {
+
+	public OperacoesController() {
+		super();
+	}
+	
+	public double contaVetor(int[] vetor) {
+		int[] vetor = new int[] vetor[100];
+		double TempoInicial = System.nanoTime();
+		for(int i=0; i<1000; i++) {
+			vetor[i] = 0;
+		}
+		double TempoFinal = System.nanoTime();
+		double tempoTotal = TempoFinal - TempoInicial;
+		tempoTotal = tempoTotal / Math.pow(10,9);
+	}
+
+}
