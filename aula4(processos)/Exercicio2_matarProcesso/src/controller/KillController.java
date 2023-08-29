@@ -33,6 +33,24 @@ public class KillController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}else {
+			processo = "ps -ef";
+			try {
+				Process p = Runtime.getRuntime().exec(processo);
+				InputStream fluxo = p.getInputStream();
+				InputStreamReader leitor = new InputStreamReader(fluxo);
+				BufferedReader buffer = new BufferedReader(leitor);
+				String lerLista = buffer.readLine();
+				
+				while(lerLista != null) {
+					System.out.println(lerLista);
+					lerLista = buffer.readLine();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 	
@@ -40,6 +58,14 @@ public class KillController {
 		String nomeOs = os();
 		if(nomeOs.contains("Windows")) {
 			String cmdPID = "TASKKILL /PID " + pid + " /f";
+			try {
+				Runtime.getRuntime().exec(cmdPID);
+				System.out.println("O processo de número " + pid + " foi morto com sucesso");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			String cmdPID = "kill -9 " + pid ;
 			try {
 				Runtime.getRuntime().exec(cmdPID);
 				System.out.println("O processo de número " + pid + " foi morto com sucesso");
@@ -54,6 +80,14 @@ public class KillController {
 		String nomeOs = os();
 		if(nomeOs.contains("Windows")) {
 			String cmdPID = "TASKKILL /IM " + nome + " /f";
+			try {
+				Runtime.getRuntime().exec(cmdPID);
+				System.out.println("O processo " + nome + " foi morto com sucesso");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			String cmdPID = "pkill -f " + nome;
 			try {
 				Runtime.getRuntime().exec(cmdPID);
 				System.out.println("O processo " + nome + " foi morto com sucesso");

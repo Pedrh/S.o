@@ -47,7 +47,7 @@ public class RedesController {
 			}
 		} else {
 			try {
-				processo = "ifconfig";
+				processo = "ip addr";
 				Process p = Runtime.getRuntime().exec(processo);
 				InputStream fluxo = p.getInputStream();
 				InputStreamReader leitor = new InputStreamReader(fluxo);
@@ -58,18 +58,19 @@ public class RedesController {
 				System.out.println("Endereços com IPv4:\n");
 				String Adap = "";
 				while (lerLinha != null) {
-					if (lerLinha.contains("Adaptador")) {
-						Adap = lerLinha;
-					}else if(lerLinha.contains("IPv4")) {
-						String[] valorIP = lerLinha.split(":");
-						System.out.println(Adap + " " + valorIP[1]);
+					if (lerLinha.contains("UP")) {
+						String[] nomeAdap = lerLinha.split(":");
+						Adap = nomeAdap[1];
+					}else if(lerLinha.contains("inet ")) {
+						String[] valorIP = lerLinha.split("/");
+						System.out.println(Adap + " " + valorIP[0]);
 					}
 					lerLinha = buffer1.readLine();
 				}
 				buffer1.close();
 				leitor.close();
 				fluxo.close();
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -109,10 +110,9 @@ public class RedesController {
 				
 				String lerLinha = buffer.readLine();
 				while(lerLinha != null) {
-					if(lerLinha.contains("milissegundos")) {
-						lerLinha = buffer.readLine();
-						String[] valorPing = lerLinha.split("=");
-						System.out.println("\nTempo Médio ="+ valorPing[3]);
+					if(lerLinha.contains("avg")) {
+						String[] valorPing = lerLinha.split("/");
+						System.out.println("\nTempo Médio = "+ valorPing[4]);
 					}
 					lerLinha = buffer.readLine();
 				}

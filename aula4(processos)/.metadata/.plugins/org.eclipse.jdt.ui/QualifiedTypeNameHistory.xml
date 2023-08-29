@@ -8,5 +8,7 @@
     <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="controller.KillController"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Executable"/>
+    <fullyQualifiedTypeName name="controller.DistroController"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 </qualifiedTypeNameHistroy>
