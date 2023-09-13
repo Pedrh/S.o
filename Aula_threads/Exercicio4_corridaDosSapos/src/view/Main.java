@@ -5,12 +5,16 @@ import controller.ThreadCorrida;
 public class Main {
 
 	public static void main(String[] args) {
-		int sapoNum = 1;
-		int chegada = 40;
-		int limitePulo = 5;
+		int sapoNum;
+		int chegada = 100;
+		int[] colocacao = new int[5];
 		
-		Thread Tc = new ThreadCorrida(chegada, sapoNum, limitePulo);
-		Tc.start();
+		for(sapoNum = 0; sapoNum <5; sapoNum++) {
+			Thread Tc = new ThreadCorrida(chegada, sapoNum+1);
+			Tc.start();
+		}
+		
+		
 	}
 
 }
