@@ -6,10 +6,12 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-		String[] processo = {"ping -4 -c 10 www.google.com.br"};
-		Thread Ping = new ThreadPing(processo);
-		Ping.start();
+		String[] processo = {"google", "oul", "terra"};
+		for(int i = 0; i<3; i++) {
+			Thread Ping = new ThreadPing(processo, i);
+			Ping.start();
+		}
+		
 	}
 
 }
-

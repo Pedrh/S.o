@@ -7,6 +7,7 @@ public class ThreadCorrida extends Thread {
 	public ThreadCorrida(int Chegada, int sapoNum) {
 		this.Chegada = Chegada;
 		this.sapoNum = sapoNum;
+		
 	}
 	
 	@Override
@@ -23,12 +24,15 @@ public class ThreadCorrida extends Thread {
 		} catch (InterruptedException e) {
 			}
 		System.out.print("\nsapo " + sapoNum +"-");
+		double TempoInicial = System.nanoTime();
 		do {
 			
 			double pulo = Math.random() * 10 + 1;
 			i += (int) pulo;
-			System.out.print(" salto: " + (int) pulo + "| ");
+			System.out.print(" salto: " + (int) pulo + "|");
 		}while(i < chegada);
-		
+		double TempoFinal = System.nanoTime();
+		double TempoTotal = TempoFinal - TempoInicial;
+		System.out.print("\n Tempo Total do percurso: " + TempoTotal + "nS");
 	}
 }
