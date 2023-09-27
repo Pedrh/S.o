@@ -4,7 +4,6 @@ import java.util.concurrent.Semaphore;
 
 import controller.Formula1;
 import controller.Ordena;
-//import model.PosicaoCarro;
 import model.PosicaoCarro;
 
 public class Principal {
