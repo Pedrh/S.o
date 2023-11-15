@@ -1,0 +1,12 @@
+FROM httpd:latest
+LABEL maintainer="Pedro Silva"
+RUN mkdir -p /var/html/
+RUN chmod -R 777 /usr/local/apache2/htdocs/
+RUN chmod -R 777 /var/html/
+COPY ./html/ /usr/local/apache2/htdocs/
+VOLUME /var/html
+
+
+Comando docker run:
+docker run -dit --name htmldocker -p 32000:80 -v ./html/:/var/html/ htmldockerimg
+
